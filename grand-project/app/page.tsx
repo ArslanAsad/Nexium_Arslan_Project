@@ -5,6 +5,7 @@ import { PitchAILogo } from "@/components/pitch-ai-logo";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Brain, Lightbulb, History } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const fadeInVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -12,27 +13,48 @@ const fadeInVariants = {
 };
 
 export default function LandingPage() {
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-950 dark:to-gray-900 text-gray-900 dark:text-gray-50">
       <motion.header
-        className="fixed top-0 left-0 right-0 z-50 container mx-auto px-4 py-6 flex items-center justify-between bg-white/80 dark:bg-gray-950/80 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-800/50"
+        className={`fixed top-0 left-0 right-0 z-50 px-4 py-6 flex items-center justify-between transition-all duration-300 ${
+          scrolled
+            ? "bg-white/80 dark:bg-gray-950/80 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-800/50"
+            : "bg-transparent border-transparent"
+        }`}
         initial="hidden"
         animate="visible"
         variants={fadeInVariants}
         transition={{ duration: 0.5 }}
       >
-        <PitchAILogo className="text-2xl" />
-        <nav className="space-x-4">
-          <Link
-            href="/login"
-            className="text-sm font-medium hover:text-primary transition-colors"
-          >
-            Sign In
-          </Link>
-          <Button asChild>
-            <Link href="/login">Get Started</Link>
-          </Button>
-        </nav>
+        <div className="container mx-auto flex items-center justify-between">
+          <PitchAILogo className="text-2xl" />
+          <nav className="space-x-4">
+            <Link
+              href="/login"
+              className="text-sm font-medium hover:text-primary transition-colors"
+            >
+              Sign In
+            </Link>
+            <Button asChild>
+              <Link href="/login">Get Started</Link>
+            </Button>
+          </nav>
+        </div>
       </motion.header>
 
       <section className="relative flex-1 flex items-center justify-center py-20 md:py-32 overflow-hidden pt-20">
