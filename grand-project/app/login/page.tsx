@@ -42,28 +42,8 @@ export default function LoginPage() {
               <Label htmlFor="email">Email</Label>
               <Input id="email" type="email" placeholder="Enter your email" />
             </div>
-            <div className="grid gap-2">
-              <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                type="password"
-                placeholder="Enter your password"
-              />
-            </div>
-            <div className="flex items-center justify-between text-sm">
-              <div className="flex items-center space-x-2">
-                <Checkbox id="remember-me" />
-                <Label htmlFor="remember-me">Remember me</Label>
-              </div>
-              <Link
-                href="#"
-                className="text-sm font-medium underline hover:text-primary"
-              >
-                Forgot password?
-              </Link>
-            </div>
             <Button type="submit" className="w-full">
-              Sign In
+              Send Magic Link
             </Button>
             <div className="text-center text-sm text-muted-foreground">
               {"Don't have an account? "}
