@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { supabase } from "@/api/lib/supabaseClient";
+import { supabaseClient } from "@/api/lib/supabaseClient";
 import { connectToDatabase } from "@/api/lib/mongodb";
 import Pitch from "@/api/models/Pitch";
 
