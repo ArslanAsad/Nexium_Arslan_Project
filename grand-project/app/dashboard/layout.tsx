@@ -6,6 +6,7 @@ import { AppSidebar } from "@/components/app-sidebar";
 import { supabaseClient } from "@/api/lib/supabaseClient";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { Loader } from "@/components/loader";
 
 export default function DashboardLayout({
   children,
@@ -45,7 +46,7 @@ export default function DashboardLayout({
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <p>Loading...</p> {/* Or a spinner component */}
+        <Loader />
       </div>
     );
   }
