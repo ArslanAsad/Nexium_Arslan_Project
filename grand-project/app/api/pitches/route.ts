@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
 
     // call the n8n webhook
     const webhookResponse = await fetch(
-      "https://n8n-rfho.onrender.com/webhook-test/generate-pitch",
+      "https://n8n-rfho.onrender.com/webhook/generate-pitch",
       {
         method: "POST",
         headers: {
