@@ -1,6 +1,6 @@
 "use server";
 
-import { supabaseClient } from "@/api/lib/supabaseClient";
+import { createClient } from "@/lib/supabase/server";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -17,7 +17,7 @@ export async function signInWithMagicLink(
   if (!email) {
     return { success: false, message: "Email is required." };
   }
-  const supabase = supabaseClient;
+  const supabase = await createClient();
   const origin = (await headers()).get("origin");
   const redirectTo = `${origin}/dashboard`;
 
@@ -35,7 +35,7 @@ export async function signInWithMagicLink(
 }
 
 export async function signOut() {
-  const supabase = supabaseClient;
+  const supabase = await createClient();
   await supabase.auth.signOut();
   return redirect("/login");
 }

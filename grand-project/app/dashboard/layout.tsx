@@ -3,7 +3,7 @@
 import type React from "react";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
-import { supabaseClient } from "@/api/lib/supabaseClient";
+import { createClient } from "@/lib/supabase/client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Loader } from "@/components/loader";
@@ -13,7 +13,7 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const supabase = supabaseClient;
+  const supabase = createClient();
   const router = useRouter();
   const [loading, setLoading] = useState(true);
 
